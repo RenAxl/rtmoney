@@ -17,7 +17,7 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryRepository repository;
-
+	
 	@Transactional(readOnly = true)
 	public Page<CategoryDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Category> page = repository.findAll(pageRequest);
@@ -35,7 +35,7 @@ public class CategoryService {
 	@Transactional
 	public CategoryDTO insert(CategoryDTO dto) {
 		Category entity = new Category();
-		entity.setName(dto.getName());
+		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new CategoryDTO(entity);
 	}
@@ -50,6 +50,11 @@ public class CategoryService {
 
 	public void delete(Long id) {
 		repository.deleteById(id);
+	}
+	
+	private void copyDtoToEntity(CategoryDTO dto, Category entity){
+		entity.setName(dto.getName());
+		
 	}
 
 }

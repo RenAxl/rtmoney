@@ -3,6 +3,7 @@ INSERT INTO tb_category (name, created_At) values ('Alimentação', NOW());
 INSERT INTO tb_category (name, created_At) values ('Supermercado', NOW());
 INSERT INTO tb_category (name, created_At) values ('Farmácia', NOW());
 INSERT INTO tb_category (name, created_At) values ('Outros', NOW());
+INSERT INTO tb_category (name, created_At) values ('Outros', NOW());
 
 
 INSERT INTO tb_person (name, public_place, number, complement, district, zip_code, city, state, active) values ('João Silva', 'Rua do Abacaxi', '10', null, 'Brasil', '38.400-12', 'Uberlândia', 'MG', true);

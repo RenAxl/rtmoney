@@ -1,17 +1,29 @@
-package com.thayren.rtmoney.entities;
+package com.thayren.rtmoney.dto;
+
+import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Address {
+public class AddressDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String publicPlace;
-	private String number; // É String porque alguns endereços possuem Letra.
+	private String number;
 	private String complement;
 	private String district;
 	private String zipCode;
 	private String city;
 	private String state;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getPublicPlace() {
 		return publicPlace;
@@ -68,5 +80,7 @@ public class Address {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	
 
 }
