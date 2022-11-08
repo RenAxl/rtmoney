@@ -31,8 +31,8 @@ public class Category implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updateAt;
 
-	@OneToMany(mappedBy = "category")
-	private Set<Release> releases = new HashSet<>();
+	//@OneToMany(mappedBy = "category")
+	//private Set<Release> releases = new HashSet<>();
 
 	public Category() {
 	}
@@ -76,9 +76,11 @@ public class Category implements Serializable {
 		updateAt = Instant.now();
 	}
 
+	/*
 	public Set<Release> getReleases() {
 		return releases;
 	}
+	*/
 
 	@Override
 	public int hashCode() {

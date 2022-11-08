@@ -23,7 +23,7 @@ public class Release implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String description;
-	private LocalDate duaDate;
+	private LocalDate dueDate;
 	private LocalDate datePayment;
 	private BigDecimal value;
 	private String observation;
@@ -42,11 +42,11 @@ public class Release implements Serializable {
 	public Release() {
 	}
 
-	public Release(Long id, String description, LocalDate duaDate, LocalDate datePayment, BigDecimal value,
+	public Release(Long id, String description, LocalDate dueDate, LocalDate datePayment, BigDecimal value,
 			String observation, ReleaseType type, Category category, Person person) {
 		this.id = id;
 		this.description = description;
-		this.duaDate = duaDate;
+		this.dueDate = dueDate;
 		this.datePayment = datePayment;
 		this.value = value;
 		this.observation = observation;
@@ -71,12 +71,12 @@ public class Release implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDate getDuaDate() {
-		return duaDate;
+	public LocalDate getDueDate() {
+		return dueDate;
 	}
 
-	public void setDuaDate(LocalDate duaDate) {
-		this.duaDate = duaDate;
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	public LocalDate getDatePayment() {

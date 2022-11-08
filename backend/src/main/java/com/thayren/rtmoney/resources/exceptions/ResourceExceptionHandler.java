@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.thayren.rtmoney.services.exceptions.DatabaseException;
+import com.thayren.rtmoney.services.exceptions.NonexistentOrInactivePersonException;
 import com.thayren.rtmoney.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
@@ -42,9 +43,11 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(status).body(err);
 	}
 
-	//Tratamento de exceção para quando tentar realizar um POST e o JSON não estiver em um formato correto.
+	// Tratamento de exceção para quando tentar realizar um POST e o JSON não
+	// estiver em um formato correto.
 	@ExceptionHandler(HttpMessageNotReadableException.class)
-	public ResponseEntity<StandardError> HttpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest request){
+	public ResponseEntity<StandardError> HttpMessageNotReadable(HttpMessageNotReadableException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
@@ -69,6 +72,19 @@ public class ResourceExceptionHandler {
 			err.addError(f.getField(), f.getDefaultMessage());
 		}
 
+		return ResponseEntity.status(status).body(err);
+	}
+
+	@ExceptionHandler(NonexistentOrInactivePersonException.class)
+	public ResponseEntity<StandardError> nonexistentOrInactivePerson(NonexistentOrInactivePersonException e,
+			HttpServletRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value());
+		err.setError("Non-existent or inactive person");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 

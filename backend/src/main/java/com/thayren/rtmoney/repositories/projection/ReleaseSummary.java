@@ -1,53 +1,34 @@
-package com.thayren.rtmoney.dto;
+package com.thayren.rtmoney.repositories.projection;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.thayren.rtmoney.entities.Category;
-import com.thayren.rtmoney.entities.Person;
-import com.thayren.rtmoney.entities.Release;
 import com.thayren.rtmoney.entities.ReleaseType;
 
-public class ReleaseDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ReleaseSummary {
 
 	private Long id;
 	private String description;
 	private LocalDate dueDate;
 	private LocalDate datePayment;
 	private BigDecimal value;
-	private String observation;
 	private ReleaseType type;
-	private Category category;
-	private Person person;
+	private String category;
+	private String person;
 
-	public ReleaseDTO() {
+	public ReleaseSummary() {
 	}
 
-	public ReleaseDTO(Long id, String description, LocalDate dueDate, LocalDate datePayment, BigDecimal value,
-			String observation, ReleaseType type, Category category, Person person) {
+	public ReleaseSummary(Long id, String description, LocalDate dueDate, LocalDate datePayment, BigDecimal value,
+			ReleaseType type, String category, String person) {
 		this.id = id;
 		this.description = description;
 		this.dueDate = dueDate;
 		this.datePayment = datePayment;
 		this.value = value;
-		this.observation = observation;
 		this.type = type;
 		this.category = category;
 		this.person = person;
-	}
-
-	public ReleaseDTO(Release entity) {
-		this.id = entity.getId();
-		this.description = entity.getDescription();
-		this.dueDate = entity.getDueDate();
-		this.datePayment = entity.getDueDate();
-		this.value = entity.getValue();
-		this.observation = entity.getObservation();
-		this.type = entity.getType();
-		this.category = entity.getCategory();
-		this.person = entity.getPerson();
 	}
 
 	public Long getId() {
@@ -90,14 +71,6 @@ public class ReleaseDTO implements Serializable {
 		this.value = value;
 	}
 
-	public String getObservation() {
-		return observation;
-	}
-
-	public void setObservation(String observation) {
-		this.observation = observation;
-	}
-
 	public ReleaseType getType() {
 		return type;
 	}
@@ -106,19 +79,19 @@ public class ReleaseDTO implements Serializable {
 		this.type = type;
 	}
 
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	public Person getPerson() {
+	public String getPerson() {
 		return person;
 	}
 
-	public void setPerson(Person person) {
+	public void setPerson(String person) {
 		this.person = person;
 	}
 
