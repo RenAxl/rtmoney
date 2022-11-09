@@ -2,15 +2,12 @@ package com.thayren.rtmoney.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -30,9 +27,6 @@ public class Category implements Serializable {
 
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updateAt;
-
-	//@OneToMany(mappedBy = "category")
-	//private Set<Release> releases = new HashSet<>();
 
 	public Category() {
 	}
@@ -75,12 +69,6 @@ public class Category implements Serializable {
 	public void preUpdate() {
 		updateAt = Instant.now();
 	}
-
-	/*
-	public Set<Release> getReleases() {
-		return releases;
-	}
-	*/
 
 	@Override
 	public int hashCode() {
