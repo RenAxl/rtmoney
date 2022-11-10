@@ -35,3 +35,17 @@ label {
 .col-data-content {
     text-align: center !important;
 }
+
+.col-acoes-header {
+    width: 115px;
+}
+
+.col-acoes {
+    width: 115px;
+    text-align: center !important;
+}
+
+.col-acoes .p-button {
+    margin: 1px;
+}
+
