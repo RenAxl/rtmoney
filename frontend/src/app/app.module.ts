@@ -11,13 +11,15 @@ import { TooltipModule } from 'primeng/tooltip';
 import { AppComponent } from './app.component';
 import { ResearchReleasesComponent } from './research-releases/research-releases.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ResearchPersonsComponent } from './research-persons/research-persons.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ResearchReleasesComponent,
-    NavbarComponent
+    NavbarComponent,
+    ResearchPersonsComponent
   ],
   imports: [
     BrowserModule,
