@@ -9,11 +9,15 @@ import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 
 import { AppComponent } from './app.component';
+import { ResearchReleasesComponent } from './research-releases/research-releases.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResearchReleasesComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
