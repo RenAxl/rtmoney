@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { ResearchReleasesComponent } from './research-releases/research-releases.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ResearchPersonsComponent } from './research-persons/research-persons.component';
+import { ReleaseRegisterComponent } from './release-register/release-register.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ResearchPersonsComponent } from './research-persons/research-persons.co
     AppComponent,
     ResearchReleasesComponent,
     NavbarComponent,
-    ResearchPersonsComponent
+    ResearchPersonsComponent,
+    ReleaseRegisterComponent
   ],
   imports: [
     BrowserModule,
