@@ -13,6 +13,9 @@ import { ResearchReleasesComponent } from './research-releases/research-releases
 import { NavbarComponent } from './navbar/navbar.component';
 import { ResearchPersonsComponent } from './research-persons/research-persons.component';
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
+import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -30,8 +33,9 @@ import { ReleaseRegisterComponent } from './release-register/release-register.co
     InputTextModule,
     TabViewModule,
     TableModule,
-    TooltipModule
-    
+    TooltipModule,
+    CalendarModule,
+    BrowserAnimationsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
