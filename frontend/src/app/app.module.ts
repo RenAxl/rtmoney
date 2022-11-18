@@ -16,7 +16,7 @@ import { ReleaseRegisterComponent } from './release-register/release-register.co
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectButtonModule } from 'primeng/selectbutton';
-
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     ResearchReleasesComponent,
     NavbarComponent,
     ResearchPersonsComponent,
-    ReleaseRegisterComponent
+    ReleaseRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +36,10 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     TooltipModule,
     CalendarModule,
     BrowserAnimationsModule,
-    SelectButtonModule
+    SelectButtonModule,
+    DropdownModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
