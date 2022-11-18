@@ -15,7 +15,7 @@ import { ResearchPersonsComponent } from './research-persons/research-persons.co
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -35,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TableModule,
     TooltipModule,
     CalendarModule,
-    BrowserAnimationsModule  
+    BrowserAnimationsModule,
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
