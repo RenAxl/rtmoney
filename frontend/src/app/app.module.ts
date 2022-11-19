@@ -19,6 +19,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PersonRegisterComponent } from './person-register/person-register.component';
+import { InputMaskModule } from 'primeng/inputmask';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { PersonRegisterComponent } from './person-register/person-register.compo
     BrowserAnimationsModule,
     SelectButtonModule,
     DropdownModule,
-    InputNumberModule
+    InputNumberModule,
+    InputMaskModule,
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
