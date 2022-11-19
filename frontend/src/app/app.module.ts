@@ -21,6 +21,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { PersonRegisterComponent } from './person-register/person-register.component';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
+import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     ResearchPersonsComponent,
     ReleaseRegisterComponent,
     PersonRegisterComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
