@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { PersonRegisterComponent } from './person-register/person-register.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     NavbarComponent,
     ResearchPersonsComponent,
     ReleaseRegisterComponent,
+    PersonRegisterComponent,
   ],
   imports: [
     BrowserModule,
