@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./research-releases.component.css'],
 })
 export class ResearchReleasesComponent {
-  releases = [
+  lancamentos = [
     {
       tipo: 'DESPESA',
       descricao: 'Compra de pão',
