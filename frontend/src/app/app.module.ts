@@ -2,22 +2,24 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { TooltipModule } from 'primeng/tooltip';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './core/navbar/navbar.component';
+
 import { ReleasesModule } from './releases/releases.module';
 import { PersonsModule } from './persons/persons.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [
+    AppComponent, 
+  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-
-    ReleasesModule,
+    BrowserModule, 
+    AppRoutingModule, 
+    ReleasesModule, 
     PersonsModule,
+    CoreModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
