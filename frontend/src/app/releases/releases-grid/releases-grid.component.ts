@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ReleasesGridComponent implements OnInit {
 
-  @Input() lancamentos:any[] = [];
+  @Input() releases:any[] = [];
 
   constructor() { }
 
