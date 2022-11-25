@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResearchPersonsComponent } from './research-persons/research-persons.component';
-import { PersonsGridComponent } from './persons-grid/persons-grid.component';
 import { PersonRegisterComponent } from './person-register/person-register.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -17,8 +16,7 @@ import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
     ResearchPersonsComponent,
-    PersonRegisterComponent,
-    PersonsGridComponent
+    PersonRegisterComponent
   ],
   imports: [
     CommonModule,

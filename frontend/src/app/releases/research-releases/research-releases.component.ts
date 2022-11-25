@@ -7,6 +7,8 @@ import { ReleaseService } from './../release.service';
   styleUrls: ['./research-releases.component.css'],
 })
 export class ResearchReleasesComponent implements OnInit {
+
+  descricao: string = '';
   releases: any[] = [];
 
   constructor(private releaseService: ReleaseService) {}
@@ -17,7 +19,7 @@ export class ResearchReleasesComponent implements OnInit {
 
   pesquisar(): void {
     this.releaseService
-      .pesquisar()
+      .pesquisar({ descricao: this.descricao })
       .then(releases => {
         console.log(releases);
         this.releases = releases

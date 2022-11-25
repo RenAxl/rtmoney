@@ -13,14 +13,12 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { ResearchReleasesComponent } from './research-releases/research-releases.component';
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
-import { ReleasesGridComponent } from './releases-grid/releases-grid.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     ResearchReleasesComponent,
-    ReleaseRegisterComponent,
-    ReleasesGridComponent,
+    ReleaseRegisterComponent
   ],
   imports: [
     CommonModule,
