@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReleaseService } from './../release.service';
+import { LancamentoFiltro, ReleaseService } from './../release.service';
 
 @Component({
   selector: 'app-research-releases',
@@ -9,6 +9,8 @@ import { ReleaseService } from './../release.service';
 export class ResearchReleasesComponent implements OnInit {
 
   descricao: string = '';
+  dataVencimentoInicio?: Date;
+  dataVencimentoFim?: Date;
   releases: any[] = [];
 
   constructor(private releaseService: ReleaseService) {}
@@ -18,8 +20,14 @@ export class ResearchReleasesComponent implements OnInit {
   }
 
   pesquisar(): void {
+    const filtro: LancamentoFiltro = {
+      descricao: this.descricao,
+      dataVencimentoInicio: this.dataVencimentoInicio,
+      dataVencimentoFim: this.dataVencimentoFim
+    }
+
     this.releaseService
-      .pesquisar({ descricao: this.descricao })
+      .pesquisar(filtro)
       .then(releases => {
         console.log(releases);
         this.releases = releases
