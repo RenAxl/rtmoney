@@ -10,6 +10,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { SharedModule } from '../shared/shared.module';
 import { InputTextModule } from 'primeng/inputtext';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,6 +22,7 @@ import { InputTextModule } from 'primeng/inputtext';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
 
     InputTextModule,
     ButtonModule,
