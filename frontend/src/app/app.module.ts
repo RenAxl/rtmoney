@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ReleasesModule } from './releases/releases.module';
 import { PersonsModule } from './persons/persons.module';
 import { CoreModule } from './core/core.module';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,12 @@ import { CoreModule } from './core/core.module';
     ReleasesModule, 
     PersonsModule,
     CoreModule,
+    ToastModule
     
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 
 import { LancamentoFiltro, ReleaseService } from './../release.service';
@@ -20,7 +20,10 @@ export class ResearchReleasesComponent implements OnInit {
 
   @ViewChild('tabela') grid!: Table;
 
-  constructor(private releaseService: ReleaseService) {}
+  constructor(
+    private releaseService: ReleaseService,
+    private messageService: MessageService
+    ) {}
 
   ngOnInit(): void {
   }
@@ -44,6 +47,7 @@ export class ResearchReleasesComponent implements OnInit {
     this.releaseService.excluir(release.id)
       .then(() => {
         this.grid.reset();
+        this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!' })
       })
   }
 }
