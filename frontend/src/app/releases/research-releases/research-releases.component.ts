@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 
 import { LancamentoFiltro, ReleaseService } from './../release.service';
@@ -22,7 +22,8 @@ export class ResearchReleasesComponent implements OnInit {
 
   constructor(
     private releaseService: ReleaseService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
     ) {}
 
   ngOnInit(): void {
@@ -41,6 +42,15 @@ export class ResearchReleasesComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event!.first! / event!.rows!;
     this.pesquisar(pagina);
+  }
+
+  confirmarExclusao(lancamento: any): void {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
   }
 
   excluir(release: any) {
