@@ -53,4 +53,10 @@ export class ReleaseService {
         return resultado;
       });
   }
+
+  excluir(codigo: number): Promise<void> {
+    return this.http.delete<void>(`${this.lancamentosUrl}/${codigo}`)
+      .toPromise();
+  }
+
 }

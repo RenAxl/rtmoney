@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/api';
+import { Table } from 'primeng/table';
 
 import { LancamentoFiltro, ReleaseService } from './../release.service';
 
@@ -16,6 +17,8 @@ export class ResearchReleasesComponent implements OnInit {
   totalRegistros: number = 0
 
   releases: any[] = [];
+
+  @ViewChild('tabela') grid!: Table;
 
   constructor(private releaseService: ReleaseService) {}
 
@@ -37,4 +40,10 @@ export class ResearchReleasesComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
+  excluir(release: any) {
+    this.releaseService.excluir(release.id)
+      .then(() => {
+        this.grid.reset();
+      })
+  }
 }
