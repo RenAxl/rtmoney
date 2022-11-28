@@ -10,6 +10,17 @@ import { CoreModule } from './core/core.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+registerLocaleData(localePt);
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
 
 
 @NgModule({
@@ -23,7 +34,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     PersonsModule,
     CoreModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     
   ],
   providers: [
