@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export class PessoaFiltro {
@@ -43,6 +43,14 @@ export class PersonService {
   
   excluir(codigo: number): Promise<void> {
     return this.http.delete<void>(`${this.pessoasUrl}/${codigo}`)
+      .toPromise();
+  }
+
+  mudarStatus(codigo: number, ativo: boolean): Promise<void> {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<void>(`${this.pessoasUrl}/${codigo}/active`, ativo, { headers })
       .toPromise();
   }
 

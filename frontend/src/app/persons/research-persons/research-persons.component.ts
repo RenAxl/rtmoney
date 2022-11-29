@@ -59,5 +59,18 @@ export class ResearchPersonsComponent {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }  
+
+  alternarStatus(person: any): void {
+    const novoStatus = !person.active;
+
+    this.personService.mudarStatus(person.id, novoStatus)
+      .then(() => {
+        const acao = novoStatus ? 'ativada' : 'desativada';
+
+        person.active = novoStatus;
+        this.messageService.add({ severity: 'success', detail: `Pessoa ${acao} com sucesso!` });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
   
 }
