@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { PessoaFiltro, PersonService } from '../person.service';
+import { PersonService, PessoaFiltro,  } from '../person.service';
 import { Table } from 'primeng/table';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -33,7 +33,8 @@ export class ResearchPersonsComponent {
     .then((dados: any) => {
       this.persons = dados.pessoas;
       this.totalRegistros = dados.total;
-    });
+    })
+    .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
