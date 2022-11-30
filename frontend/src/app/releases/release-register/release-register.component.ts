@@ -1,3 +1,4 @@
+import { PersonService } from './../../persons/person.service';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/categories/category.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -16,19 +17,17 @@ export class ReleaseRegisterComponent implements OnInit {
 
   categories = [];
 
-  pessoas = [
-    { label: 'João da Silva', value: 4 },
-    { label: 'Sebastião Souza', value: 9 },
-    { label: 'Maria Abadia', value: 3 },
-  ];
+  persons = [];
 
   constructor(
     private categoryService: CategoryService,
+    private personService: PersonService,
     private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit(): void {
-    this.carregarCategorias()
+    this.carregarCategorias();
+    this.carregarPessoas();
   }
 
   carregarCategorias() {
@@ -37,6 +36,14 @@ export class ReleaseRegisterComponent implements OnInit {
         this.categories = categories.map((c: any) => ({ label: c.name, value: c.id }));
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  carregarPessoas(){
+    return this.personService.listarTodas()
+    .then(persons => {
+      this.persons = persons.map((p: any) => ({ label: p.name, value: p.id }));
+    })
+    .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

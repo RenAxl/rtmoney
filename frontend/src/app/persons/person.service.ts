@@ -54,5 +54,15 @@ export class PersonService {
       .toPromise();
   }
 
+  listarTodas(): Promise<any> {
+
+    return this.http.get(this.pessoasUrl)
+      .toPromise()
+      .then((response: any) => {
+        const persons = response.content;  
+        return persons;
+      });
+  }
+
 }
 
