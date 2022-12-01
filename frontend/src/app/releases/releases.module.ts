@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -24,6 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
 
     InputNumberModule,
     InputTextModule,
