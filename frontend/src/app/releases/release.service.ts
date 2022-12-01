@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Release } from '../core/model';
 
 export class LancamentoFiltro {
   descricao?: string;
@@ -56,6 +57,14 @@ export class ReleaseService {
 
   excluir(codigo: number): Promise<void> {
     return this.http.delete<void>(`${this.lancamentosUrl}/${codigo}`)
+      .toPromise();
+  }
+
+  adicionar(release: Release): Promise<any> {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+
+    return this.http.post(this.lancamentosUrl, release, { headers })
       .toPromise();
   }
 
