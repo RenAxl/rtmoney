@@ -17,6 +17,7 @@ import { ResearchPersonsComponent } from './persons/research-persons/research-pe
 const routes: Routes = [
   { path: 'releases', component: ResearchReleasesComponent },
   { path: 'releases/new', component: ReleaseRegisterComponent },
+  { path: 'releases/:id', component: ReleaseRegisterComponent },
   { path: 'persons', component: ResearchPersonsComponent }
 ];
 

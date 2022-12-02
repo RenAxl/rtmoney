@@ -68,4 +68,40 @@ export class ReleaseService {
       .toPromise();
   }
 
+  atualizar(release: Release): Promise<any> {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.lancamentosUrl}/${release.id}`, release, { headers })
+      .toPromise()
+      .then((response: any) => {
+        this.converterStringsParaDatas([response]);
+
+        return response;
+      });
+  }
+
+  buscarPorCodigo(id: number): Promise<Release> {
+    
+    return this.http.get(`${this.lancamentosUrl}/${id}`)
+      .toPromise()
+      .then((response: any) => {
+        this.converterStringsParaDatas([response]);
+
+        return response;
+      });
+  }
+
+  private converterStringsParaDatas(releases: Release[]) {
+    for (const release of releases) {
+      let offset = new Date().getTimezoneOffset() * 60000;
+
+      release.dueDate = new Date(new Date(release.dueDate!).getTime() + offset);
+
+      if (release.datePayment) {
+        release.datePayment = new Date(new Date(release.datePayment).getTime() + offset);
+      }
+    }
+  }
+
 }

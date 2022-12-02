@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 import { PersonService } from './../../persons/person.service';
 import { CategoryService } from 'src/app/categories/category.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -30,13 +32,25 @@ export class ReleaseRegisterComponent implements OnInit {
     private personService: PersonService,
     private releaseService: ReleaseService,
     private errorHandler: ErrorHandlerService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    const releaseId = this.route.snapshot.params['id'];
+
+    if (releaseId) {
+      this.carregarLancamento(releaseId)
+    }
+
     this.carregarCategorias();
     this.carregarPessoas();
   }
+
+  get editando() {
+    return Boolean(this.release.id);
+  }
+
 
   carregarCategorias() {
     return this.categoryService.listarTodas()
@@ -55,6 +69,23 @@ export class ReleaseRegisterComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
+    if (this.editando) {
+      this.atualizarLancamento()
+    } else {
+      this.adicionarLancamento(form)
+    }
+  }
+
+  atualizarLancamento() {
+    this.releaseService.atualizar(this.release)
+      .then((release: Release) => {
+        this.release = release;
+        this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso!' });
+      }
+      ).catch(erro => this.errorHandler.handle(erro))
+  }
+
+  adicionarLancamento(form: NgForm) {
     this.releaseService.adicionar(this.release)
       .then(() => {
         this.messageService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!' });
@@ -62,5 +93,13 @@ export class ReleaseRegisterComponent implements OnInit {
       })
       .catch(erro => this.errorHandler.handle(erro));
  }
+
+ carregarLancamento(id: number) {
+  this.releaseService.buscarPorCodigo(id)
+    .then(release => {
+      this.release = release;
+    },
+      erro => this.errorHandler.handle(erro));
+}
 
 }
