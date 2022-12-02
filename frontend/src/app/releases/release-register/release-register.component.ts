@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { PersonService } from './../../persons/person.service';
 import { CategoryService } from 'src/app/categories/category.service';
@@ -33,7 +33,8 @@ export class ReleaseRegisterComponent implements OnInit {
     private releaseService: ReleaseService,
     private errorHandler: ErrorHandlerService,
     private messageService: MessageService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -81,6 +82,7 @@ export class ReleaseRegisterComponent implements OnInit {
       .then((release: Release) => {
         this.release = release;
         this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso!' });
+        this.router.navigate(['/releases']);
       }
       ).catch(erro => this.errorHandler.handle(erro))
   }
@@ -89,7 +91,7 @@ export class ReleaseRegisterComponent implements OnInit {
     this.releaseService.adicionar(this.release)
       .then(() => {
         this.messageService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!' });
-        form.reset();
+        this.router.navigate(['/releases']);
       })
       .catch(erro => this.errorHandler.handle(erro));
  }
@@ -100,6 +102,19 @@ export class ReleaseRegisterComponent implements OnInit {
       this.release = release;
     },
       erro => this.errorHandler.handle(erro));
+}
+
+novo(form: NgForm) {
+  form.reset();
+
+  /* Esta função é para quando o formulário é resetado, o botão RECEITA/DESPESA
+precisa ficar no default com RECEITA marcado, e somente com o reset de formulário
+Não estava ficando nada marcado */
+  setTimeout(() => {
+    this.release = new Release();
+  }, 1);
+
+  this.router.navigate(['releases/new']);
 }
 
 }
