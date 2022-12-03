@@ -12,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ErrorHandlerService } from './error-handler.service';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -21,7 +22,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,

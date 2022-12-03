@@ -37,6 +37,6 @@ import { SharedModule } from '../shared/shared.module';
     DropdownModule,
     SharedModule
   ],
-  exports: [ResearchReleasesComponent, ReleaseRegisterComponent],
+  exports: []
 })
 export class ReleasesModule {}

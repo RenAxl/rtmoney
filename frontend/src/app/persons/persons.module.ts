@@ -32,9 +32,6 @@ import { HttpClientModule } from '@angular/common/http';
     InputMaskModule,
     SharedModule
   ],
-  exports: [
-    ResearchPersonsComponent,
-    PersonRegisterComponent
-  ]
+  exports: []
 })
 export class PersonsModule { }
