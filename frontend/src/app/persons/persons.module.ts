@@ -11,6 +11,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { SharedModule } from '../shared/shared.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { HttpClientModule } from '@angular/common/http';
+import { PersonsRoutingModule } from './persons-routing.module';
 
 
 
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     TooltipModule,
     DropdownModule,
     InputMaskModule,
-    SharedModule
+    SharedModule,
+    PersonsRoutingModule
   ],
   exports: []
 })

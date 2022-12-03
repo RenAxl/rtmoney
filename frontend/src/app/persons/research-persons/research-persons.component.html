@@ -71,6 +71,7 @@
                 icon="pi pi-pencil"
                 pTooltip="Editar"
                 tooltipPosition="top"
+                [routerLink]="['/persons', person.id]"
               ></a>
               <button
                 pButton
@@ -90,6 +91,6 @@
       </p-table>
     </div>
 
-    <a pButton label="Nova Pessoa"></a>
+    <a pButton label="Nova Pessoa" routerLink="/persons/new"></a>
   </div>
 </div>

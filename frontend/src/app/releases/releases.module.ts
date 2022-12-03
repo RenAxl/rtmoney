@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -15,6 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ResearchReleasesComponent } from './research-releases/research-releases.component';
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
 import { SharedModule } from '../shared/shared.module';
+import { ReleasesRoutingModule } from './releases-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,6 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    RouterModule,
 
     InputNumberModule,
     InputTextModule,
@@ -35,7 +34,8 @@ import { SharedModule } from '../shared/shared.module';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    SharedModule
+    SharedModule,
+    ReleasesRoutingModule
   ],
   exports: []
 })

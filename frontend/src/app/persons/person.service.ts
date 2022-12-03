@@ -73,5 +73,26 @@ export class PersonService {
       .toPromise();
   }
 
+  atualizar(person: Person): Promise<any> {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${person.id}`, person, { headers })
+      .toPromise()
+      .then((response: any) => {
+        return response;
+      });
+  }
+
+
+  buscarPorCodigo(id: number): Promise<Person> {
+    
+    return this.http.get(`${this.pessoasUrl}/${id}`)
+      .toPromise()
+      .then((response: any) => {
+        return response;
+      });
+  }
+
 }
 

@@ -19,10 +19,10 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     HttpClientModule,
   
-    AppRoutingModule, 
     ReleasesModule, 
     PersonsModule,
     CoreModule,
+    AppRoutingModule, 
   ],
   providers: [],
   bootstrap: [AppComponent],
