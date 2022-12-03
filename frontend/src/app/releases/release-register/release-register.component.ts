@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { PersonService } from './../../persons/person.service';
 import { CategoryService } from 'src/app/categories/category.service';
@@ -34,7 +35,8 @@ export class ReleaseRegisterComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +48,8 @@ export class ReleaseRegisterComponent implements OnInit {
 
     this.carregarCategorias();
     this.carregarPessoas();
+
+    this.title.setTitle('Novo lançamento')
   }
 
   get editando() {
@@ -100,6 +104,7 @@ export class ReleaseRegisterComponent implements OnInit {
   this.releaseService.buscarPorCodigo(id)
     .then(release => {
       this.release = release;
+      this.atualizarTituloEdicao()
     },
       erro => this.errorHandler.handle(erro));
 }
@@ -115,6 +120,10 @@ Não estava ficando nada marcado */
   }, 1);
 
   this.router.navigate(['releases/new']);
+}
+
+atualizarTituloEdicao() {
+  this.title.setTitle(`Edição de lançamento: ${this.release.description}`)
 }
 
 }

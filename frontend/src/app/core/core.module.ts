@@ -1,6 +1,8 @@
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { ToastModule } from 'primeng/toast';
@@ -51,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MessageService,
     ConfirmationService,
     TranslateService,
-    ErrorHandlerService
+    ErrorHandlerService,
+    Title,
   ]
 })
 export class CoreModule { }
