@@ -5,6 +5,7 @@ import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { SecurityRoutingModule } from "./security-routing.module";
 import { LoginFormComponent } from './login-form/login-form.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -17,8 +18,15 @@ import { LoginFormComponent } from './login-form/login-form.component';
       
       InputTextModule,
       ButtonModule,
-      SecurityRoutingModule
+      SecurityRoutingModule,
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: () => {
+            return '';
+          }
+        }
+      }),
     ],
-    exports: []
+    providers: [JwtHelperService]
   })
   export class SecurityModule {}
