@@ -66,18 +66,14 @@ export class PersonService {
   }
 
   adicionar(person: Person): Promise<any> {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
-
-    return this.http.post(this.pessoasUrl, person, { headers })
+    
+    return this.http.post(this.pessoasUrl, person)
       .toPromise();
   }
 
   atualizar(person: Person): Promise<any> {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
-
-    return this.http.put(`${this.pessoasUrl}/${person.id}`, person, { headers })
+ 
+    return this.http.put(`${this.pessoasUrl}/${person.id}`, person)
       .toPromise()
       .then((response: any) => {
         return response;

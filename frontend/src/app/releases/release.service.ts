@@ -61,18 +61,15 @@ export class ReleaseService {
   }
 
   adicionar(release: Release): Promise<any> {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
 
-    return this.http.post(this.lancamentosUrl, release, { headers })
+    return this.http.post(this.lancamentosUrl, release)
       .toPromise();
   }
 
   atualizar(release: Release): Promise<any> {
     const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
-
-    return this.http.put(`${this.lancamentosUrl}/${release.id}`, release, { headers })
+    
+    return this.http.put(`${this.lancamentosUrl}/${release.id}`, release)
       .toPromise()
       .then((response: any) => {
         this.converterStringsParaDatas([response]);
