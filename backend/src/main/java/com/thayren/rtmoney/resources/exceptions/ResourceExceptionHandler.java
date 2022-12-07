@@ -25,7 +25,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Resource not found");
+		err.setError("Recurso não encontrado");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
@@ -37,7 +37,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Database exception");
+		err.setError("Erro de banco de dados, possivel violação de integração de tabelas");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
@@ -52,7 +52,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("HttpMessageNotReadable");
+		err.setError("Não foi possível ler a mensagem HTTP");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
@@ -64,7 +64,7 @@ public class ResourceExceptionHandler {
 		ValidationError err = new ValidationError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Validation exception");
+		err.setError("Erro de validação");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 
@@ -82,7 +82,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Non-existent or inactive person");
+		err.setError("Pessoa inexistente ou inativa");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);

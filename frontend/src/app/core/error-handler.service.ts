@@ -19,10 +19,10 @@ export class ErrorHandlerService {
       msg = 'Ocorreu um erro ao processar a sua solicitação';
 
       try {
-        msg = errorResponse.error.message;
+        msg = errorResponse.error.error;
       } catch (e) { }
 
-      console.error('Ocorreu um erro', msg);
+      console.error('Ocorreu um erro', errorResponse);
     } else {
       msg = 'Erro ao processar serviço remoto. Tente novamente.';
       console.error('Ocorreu um erro', errorResponse);
