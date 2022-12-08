@@ -11,6 +11,8 @@ export class AuthService {
 
   jwtPayload: any;
 
+  tokensRevokeUrl = 'http://localhost:8080/tokens/revoke';
+
   constructor(
     private http: HttpClient,
     private jwtHelper: JwtHelperService
@@ -97,6 +99,19 @@ export class AuthService {
     }
 
     return false;
+  }
+
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
+  logout() {
+    return this.http.delete(this.tokensRevokeUrl, { withCredentials: true })
+      .toPromise()
+      .then(() => {
+        this.limparAccessToken();
+      });
   }
 
 }

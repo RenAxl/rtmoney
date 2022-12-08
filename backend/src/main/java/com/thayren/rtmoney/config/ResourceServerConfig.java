@@ -31,10 +31,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
 	
-	private static final String[] OPERATOR_OR_ADMIN = { "/categories/**", "/releases/**",   };
-	
-	private static final String[] ADMIN = { "/persons/**", "/users/**" };
-	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStore); /* Nosso Resource serve vai decodificar o token e analisar se o token token é válido*/
@@ -47,12 +43,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			http.headers().frameOptions().disable();
 		}
 	
+		// ADMIN e OPERATOR são as permissões ROLE_ADMIN e ROLE_OPERATOR cadastradas no banco.
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.GET, OPERATOR_OR_ADMIN).permitAll()
-		.antMatchers(HttpMethod.GET, ADMIN).permitAll()
-		.antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-		.antMatchers(ADMIN).hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET, "/categories/**", "/releases/**", "/persons/**").hasAnyRole("ADMIN", "OPERATOR")
+		.antMatchers(HttpMethod.DELETE, "/releases/**", "/persons/**").hasRole("ADMIN")
+		.antMatchers(HttpMethod.DELETE, "/tokens").permitAll()
+		.antMatchers("/users/**").hasRole("ADMIN")
 		.anyRequest().authenticated();
 		
 		http.cors().configurationSource(corsConfigurationSource());
