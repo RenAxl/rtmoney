@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { AuthService } from 'src/app/security/auth.service';
 
 import { LancamentoFiltro, ReleaseService } from './../release.service';
 
@@ -26,7 +27,8 @@ export class ResearchReleasesComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
-    private title: Title
+    private title: Title,
+    private auth: AuthService
     ) {}
 
   ngOnInit(): void {
@@ -65,5 +67,9 @@ export class ResearchReleasesComponent implements OnInit {
         this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!' })
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  naoTemPermissao(permissao: string) {
+    return !this.auth.temPermissao(permissao);
   }
 }

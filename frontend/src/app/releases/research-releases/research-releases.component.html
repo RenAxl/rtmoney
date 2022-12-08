@@ -92,6 +92,7 @@
                 pTooltip="Excluir"
                 tooltipPosition="top"
                 (click)="confirmarExclusao(release)"
+                [disabled]="naoTemPermissao('ROLE_ADMIN')"
               ></button>
             </td>
           </tr>
