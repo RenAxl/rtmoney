@@ -46,7 +46,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		// ADMIN e OPERATOR são as permissões ROLE_ADMIN e ROLE_OPERATOR cadastradas no banco.
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.GET, "/categories/**", "/releases/**", "/persons/**").hasAnyRole("ADMIN", "OPERATOR")
+		.antMatchers(HttpMethod.GET, "/categories/**", "/releases/**", "/persons/**").permitAll()
+		//.antMatchers(HttpMethod.GET, "/categories/**", "/releases/**", "/persons/**").hasAnyRole("ADMIN", "OPERATOR")
 		.antMatchers(HttpMethod.DELETE, "/releases/**", "/persons/**").hasRole("ADMIN")
 		.antMatchers(HttpMethod.DELETE, "/tokens").permitAll()
 		.antMatchers("/users/**").hasRole("ADMIN")

@@ -1,5 +1,7 @@
 package com.thayren.rtmoney.services;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thayren.rtmoney.dto.ReleaseDTO;
+import com.thayren.rtmoney.dto.ReleaseStatisticsCategoryDTO;
 import com.thayren.rtmoney.entities.Person;
 import com.thayren.rtmoney.entities.Release;
 import com.thayren.rtmoney.repositories.PersonRepository;
@@ -29,6 +32,10 @@ public class ReleaseService {
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+	public List<ReleaseStatisticsCategoryDTO> byCategory(LocalDate date) {
+		return this.repository.byCategory(date);
+	}	
 
 	public Page<Release> filter(ReleaseFilter releaseFilter, Pageable pageable) {
 		return repository.filter(releaseFilter, pageable);

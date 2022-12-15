@@ -1,6 +1,8 @@
 package com.thayren.rtmoney.resources;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.thayren.rtmoney.dto.ReleaseDTO;
+import com.thayren.rtmoney.dto.ReleaseStatisticsCategoryDTO;
 import com.thayren.rtmoney.entities.Release;
 import com.thayren.rtmoney.repositories.filter.ReleaseFilter;
 import com.thayren.rtmoney.repositories.projection.ReleaseSummary;
@@ -30,6 +33,12 @@ public class ReleaseResource {
 
 	@Autowired
 	private ReleaseService service;
+	
+	
+	@GetMapping("/statistics/by-category")
+	public List<ReleaseStatisticsCategoryDTO> byCategory() {
+		return this.service.byCategory(LocalDate.now());
+	}	
 
 	@GetMapping
 	public ResponseEntity<Page<Release>> filter(ReleaseFilter releaseFilter, Pageable pageable) {

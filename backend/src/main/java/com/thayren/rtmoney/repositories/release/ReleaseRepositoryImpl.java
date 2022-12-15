@@ -1,5 +1,6 @@
 package com.thayren.rtmoney.repositories.release;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 
+import com.thayren.rtmoney.dto.ReleaseStatisticsCategoryDTO;
 import com.thayren.rtmoney.entities.Release;
 import com.thayren.rtmoney.repositories.filter.ReleaseFilter;
 import com.thayren.rtmoney.repositories.projection.ReleaseSummary;
@@ -24,6 +26,36 @@ public class ReleaseRepositoryImpl implements ReleaseRepositoryQuery {
 
 	@PersistenceContext
 	private EntityManager manager;
+	
+	@Override
+	public List<ReleaseStatisticsCategoryDTO> byCategory(LocalDate referenceMonth) {
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+		
+		CriteriaQuery<ReleaseStatisticsCategoryDTO> criteriaQuery = criteriaBuilder.
+				createQuery(ReleaseStatisticsCategoryDTO.class);
+		
+		Root<Release> root = criteriaQuery.from(Release.class);
+		
+		criteriaQuery.select(criteriaBuilder.construct(ReleaseStatisticsCategoryDTO.class, 
+				root.get("category"),
+				criteriaBuilder.sum(root.get("value"))));
+		
+		LocalDate firstDay = referenceMonth.withDayOfMonth(1);
+		LocalDate lastDay = referenceMonth.withDayOfMonth(referenceMonth.lengthOfMonth());
+		
+		criteriaQuery.where(
+				criteriaBuilder.greaterThanOrEqualTo(root.get("dueDate"), 
+						firstDay),
+				criteriaBuilder.lessThanOrEqualTo(root.get("dueDate"), 
+						lastDay));
+		
+		criteriaQuery.groupBy(root.get("category"));
+		
+		TypedQuery<ReleaseStatisticsCategoryDTO> typedQuery = manager
+				.createQuery(criteriaQuery);
+		
+		return typedQuery.getResultList();
+	}	
 
 	public Page<Release> filter(ReleaseFilter releaseFilter, Pageable pageable) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
