@@ -22,6 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.thayren.rtmoney.dto.ReleaseDTO;
 import com.thayren.rtmoney.dto.ReleaseStatisticsCategoryDTO;
+import com.thayren.rtmoney.dto.ReleaseStatisticsDayDTO;
 import com.thayren.rtmoney.entities.Release;
 import com.thayren.rtmoney.repositories.filter.ReleaseFilter;
 import com.thayren.rtmoney.repositories.projection.ReleaseSummary;
@@ -34,6 +35,11 @@ public class ReleaseResource {
 	@Autowired
 	private ReleaseService service;
 	
+	
+	@GetMapping("/statistics/by-day")
+	public List<ReleaseStatisticsDayDTO> byDay() {
+		return this.service.byDay(LocalDate.now());
+	}	
 	
 	@GetMapping("/statistics/by-category")
 	public List<ReleaseStatisticsCategoryDTO> byCategory() {
