@@ -19,6 +19,7 @@ import org.springframework.util.ObjectUtils;
 
 import com.thayren.rtmoney.dto.ReleaseStatisticsCategoryDTO;
 import com.thayren.rtmoney.dto.ReleaseStatisticsDayDTO;
+import com.thayren.rtmoney.dto.ReleaseStatisticsPersonDTO;
 import com.thayren.rtmoney.entities.Release;
 import com.thayren.rtmoney.repositories.filter.ReleaseFilter;
 import com.thayren.rtmoney.repositories.projection.ReleaseSummary;
@@ -27,6 +28,35 @@ public class ReleaseRepositoryImpl implements ReleaseRepositoryQuery {
 
 	@PersistenceContext
 	private EntityManager manager;
+	
+	@Override
+	public List<ReleaseStatisticsPersonDTO> perPerson(LocalDate start, LocalDate end) {
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+		
+		CriteriaQuery<ReleaseStatisticsPersonDTO> criteriaQuery = criteriaBuilder.
+				createQuery(ReleaseStatisticsPersonDTO.class);
+		
+		Root<Release> root = criteriaQuery.from(Release.class);
+		
+		// Aqui é os parametros do construtor da classe ReleaseStatisticsPersonDTO. Pelo que entendi, esta é a projeção do SQL.
+		criteriaQuery.select(criteriaBuilder.construct(ReleaseStatisticsPersonDTO.class, 
+				root.get("type"),
+				root.get("person"),
+				criteriaBuilder.sum(root.get("value")))); // Aqui é o parametro total que é o resultado da soma dos valores
+			
+		criteriaQuery.where(
+				criteriaBuilder.greaterThanOrEqualTo(root.get("dueDate"), 
+						start),
+				criteriaBuilder.lessThanOrEqualTo(root.get("dueDate"), 
+						end));
+		
+		criteriaQuery.groupBy(root.get("type"), root.get("person"));
+		
+		TypedQuery<ReleaseStatisticsPersonDTO> typedQuery = manager
+				.createQuery(criteriaQuery);
+		
+		return typedQuery.getResultList();
+	}
 	
 	@Override
 	public List<ReleaseStatisticsDayDTO> byDay(LocalDate referenceMonth) {

@@ -1,7 +1,12 @@
 package com.thayren.rtmoney.services;
 
+import java.io.InputStream;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -16,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thayren.rtmoney.dto.ReleaseDTO;
 import com.thayren.rtmoney.dto.ReleaseStatisticsCategoryDTO;
 import com.thayren.rtmoney.dto.ReleaseStatisticsDayDTO;
+import com.thayren.rtmoney.dto.ReleaseStatisticsPersonDTO;
 import com.thayren.rtmoney.entities.Person;
 import com.thayren.rtmoney.entities.Release;
 import com.thayren.rtmoney.repositories.PersonRepository;
@@ -25,6 +31,11 @@ import com.thayren.rtmoney.repositories.projection.ReleaseSummary;
 import com.thayren.rtmoney.services.exceptions.NonexistentOrInactivePersonException;
 import com.thayren.rtmoney.services.exceptions.ResourceNotFoundException;
 
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 @Service
 public class ReleaseService {
 
@@ -33,6 +44,23 @@ public class ReleaseService {
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+	public byte[] reportPerPerson(LocalDate start, LocalDate end) throws Exception {
+		List<ReleaseStatisticsPersonDTO> queryData = repository.perPerson(start, end);
+
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("DT_START", Date.valueOf(start));
+		parameters.put("DT_END", Date.valueOf(end));
+		parameters.put("REPORT_LOCALE", new Locale("pt", "BR")); // Parametro para formatar a data em PT BR no jaspersoft. É nativo dele.
+
+		InputStream inputStream = this.getClass().getResourceAsStream(
+				"/reports/releases-by-person.jasper");
+
+		JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parameters,
+				new JRBeanCollectionDataSource(queryData));
+
+		return JasperExportManager.exportReportToPdf(jasperPrint);
+	}
 	
 	public List<ReleaseStatisticsDayDTO> byDay(LocalDate date) {
 		return this.repository.byDay(date);

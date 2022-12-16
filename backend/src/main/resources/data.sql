@@ -18,7 +18,7 @@ INSERT INTO tb_person (name, public_place, number, complement, district, zip_cod
 INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('Salário mensal', '2017-06-10', null, 6500.00, 'Distribuição de lucros', 'RECEITA', 1, 1);
 INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('Bahamas', '2017-02-10', '2017-02-10', 100.32, null, 'DESPESA', 2, 2);
 INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('Top Club', '2018-06-10', null, 120, null, 'RECEITA', 3, 3);
-INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('CEMIG', '2018-02-10', '2017-02-10', 110.44, 'Geração', 'RECEITA', 3, 4);
+INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('CEMIG', '2018-02-10', '2017-02-10', 110.44, 'Geração', 'DESPESA', 3, 4);
 INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('Extra', '2019-03-10', '2017-03-10', 1010.32, null, 'RECEITA', 4, 6);
 INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('Eletrônicos', '2019-04-10', '2017-04-10', 2100.32, null, 'DESPESA', 5, 4);
 INSERT INTO tb_release (description, due_date, date_payment, value, observation, type, category_id, person_id) values ('Instrumentos', '2020-06-10', null, 1040.32, null, 'DESPESA', 4, 3);
