@@ -25,7 +25,7 @@ export class LoginFormComponent implements OnInit {
   login(usuario: string, senha: string) {
     this.auth.login(usuario, senha)
     .then(() => {
-      this.router.navigate(['/releases']);
+      this.router.navigate(['/dashboard']);
       this.messageService.add({ severity: 'success', detail: 'Usuário autenticado com sucesso!' });
     })
     .catch(erro => {
