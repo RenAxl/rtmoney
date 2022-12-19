@@ -11,6 +11,7 @@ import { PersonsModule } from './persons/persons.module';
 import { CoreModule } from './core/core.module';
 import { SecurityModule } from './security/security.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ReportsModule } from './reports/reports.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     ReleasesModule, 
     PersonsModule,
     DashboardModule,
+    ReportsModule,
     CoreModule,
     SecurityModule,
     AppRoutingModule, 
