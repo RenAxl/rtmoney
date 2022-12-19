@@ -32,8 +32,8 @@ export class DashboardService {
     for (const dado of dados) {
       let offset = new Date().getTimezoneOffset() * 60000;
 
-      dado.dia = new Date(dado.dia);
-      dado.dia = new Date(new Date(dado.dia).getTime() + offset);
+      dado.day = new Date(dado.day);
+      dado.day = new Date(new Date(dado.day).getTime() + offset);
     }
   }
 }
